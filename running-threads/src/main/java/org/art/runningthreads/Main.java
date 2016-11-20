@@ -14,7 +14,7 @@ public class Main {
     public static void main(String[] args) {
 
         final int numberOfThreads = 10;
-        LOG.info("Running threads {} threads", numberOfThreads);
+        LOG.info("Running {} threads", numberOfThreads);
 
         List<Thread> threads = Stream
                 .generate(() -> new Thread(() -> {
