@@ -11,14 +11,17 @@ import java.util.stream.Stream;
 public class Main {
     private static final Logger LOG = LoggerFactory.getLogger(Main.class);
 
+    private static final int N_THREADS = 10;
+    private static final int DEFAULT_WAITING = 1000;
+
     public static void main(String[] args) {
 
-        final int numberOfThreads = 10;
+        final int numberOfThreads = N_THREADS;
         LOG.info("Running {} threads", numberOfThreads);
 
         List<Thread> threads = Stream
                 .generate(() -> new Thread(() -> {
-                    int time = 1000 + (new Random()).nextInt(1000);
+                    int time = DEFAULT_WAITING + (new Random()).nextInt(DEFAULT_WAITING);
                     LOG.info("Thread {} will work {} ms", Thread.currentThread().getName(), time);
                     try {
                         Thread.sleep(time);
