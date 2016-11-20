@@ -36,7 +36,7 @@ public class Main {
             try {
                 t.join();
             } catch (InterruptedException e) {
-                LOG.error("Can't join to thread {}", e, t.getName());
+                LOG.error("Can't join the thread {}", e, t.getName());
             }
         });
     }
