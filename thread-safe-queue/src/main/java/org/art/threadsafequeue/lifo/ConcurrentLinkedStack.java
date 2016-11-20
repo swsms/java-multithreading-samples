@@ -5,7 +5,6 @@ import java.util.concurrent.ConcurrentLinkedDeque;
 
 public class ConcurrentLinkedStack<T> implements Stack<T> {
     private ConcurrentLinkedDeque<T> deque;
-    private volatile int size;
 
     public ConcurrentLinkedStack() {
         this.deque = new ConcurrentLinkedDeque<>();
