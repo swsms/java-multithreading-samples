@@ -1,34 +1,34 @@
 package org.art.threadsafequeue.lifo;
 
-import java.util.LinkedList;
 import java.util.NoSuchElementException;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
 public class ConcurrentLinkedStack<T> implements Stack<T> {
-    private LinkedList<T> list;
+    private ConcurrentLinkedDeque<T> deque;
+    private volatile int size;
 
     public ConcurrentLinkedStack() {
-        this.list = new LinkedList<>();
+        this.deque = new ConcurrentLinkedDeque<>();
     }
 
     @Override
-    public synchronized void push(T elem) {
-        list.addFirst(elem);
+    public void push(T elem) {
+        deque.addFirst(elem);
     }
 
     @Override
-    public synchronized T pop() {
+    public T pop() {
         try {
-            return list.removeFirst();
+            return deque.removeFirst();
         } catch (NoSuchElementException e) {
             return null;
         }
     }
 
     @Override
-    public synchronized T peek() {
+    public T peek() {
         try {
-            return list.peekFirst();
+            return deque.peekFirst();
         } catch (NoSuchElementException e) {
             return null;
         }
@@ -36,6 +36,6 @@ public class ConcurrentLinkedStack<T> implements Stack<T> {
 
     @Override
     public synchronized int size() {
-        return list.size();
+        return deque.size();
     }
 }
