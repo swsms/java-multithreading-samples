@@ -91,22 +91,16 @@ public class ConcurrentLinkedStackTest extends Assert {
     }
 
     @Test
-    public void testPushAndPop_whenMultipleThreads() throws Exception {
+    public void testPop_whenMultipleThreads() throws Exception {
 
         final Stack<Integer> stack = new ConcurrentLinkedStack<>();
         final Random random = new Random();
-        final int numberOfWThreads = 10;
-        final int numberOfRThreads = 8;
-        final int iterations = 1_000;
+        final int numberOfThreads = 10;
+        final int iterations = 10_000;
+        final int numberOfInts = 100_000;
 
-        List<Thread> writerThreads = Stream
-                .generate(() -> new Thread(() -> {
-                    for (int i = 0; i < iterations; i++) {
-                        stack.push(random.nextInt(100));
-                    }
-                }))
-                .limit(numberOfWThreads)
-                .collect(Collectors.toList());
+        Stream.generate(() -> random.nextInt(1000))
+                .limit(numberOfInts).forEach(stack::push);
 
         List<Thread> readerThreads = Stream
                 .generate(() -> new Thread(() -> {
@@ -114,18 +108,13 @@ public class ConcurrentLinkedStackTest extends Assert {
                         stack.pop();
                     }
                 }))
-                .limit(numberOfRThreads)
+                .limit(numberOfThreads)
                 .collect(Collectors.toList());
 
-        for (Thread t : writerThreads) t.start();
-        for (Thread t : writerThreads) t.join();
         for (Thread t : readerThreads) t.start();
         for (Thread t : readerThreads) t.join();
 
-        int expectedSize = (numberOfWThreads - numberOfRThreads) * iterations;
-
-        LOG.info("actual size {} expected size {}", stack.size(), expectedSize);
-        assertEquals(stack.size(), expectedSize);
+        assertEquals(stack.size(), 0);
     }
 
 }
