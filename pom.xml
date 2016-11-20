@@ -16,7 +16,7 @@
         <testng.version>6.9.10</testng.version>
         <slf4j.version>1.7.21</slf4j.version>
         <logback.version>1.1.7</logback.version>
-        <compiler.plugin.version>3.3</compiler.plugin.version>
+        <compiler.plugin.version>3.6.0</compiler.plugin.version>
         <surefier.plugin.version>2.19.1</surefier.plugin.version>
     </properties>
 
@@ -30,6 +30,7 @@
                 <groupId>org.testng</groupId>
                 <artifactId>testng</artifactId>
                 <version>${testng.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
