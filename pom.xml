@@ -23,6 +23,7 @@
     <modules>
         <module>main-thread</module>
         <module>run-threads</module>
+        <module>thread-safe-queue</module>
     </modules>
 
     <dependencyManagement>
