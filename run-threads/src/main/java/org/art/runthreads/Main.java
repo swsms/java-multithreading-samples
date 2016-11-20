@@ -1,4 +1,4 @@
-package org.art.runningthreads;
+package org.art.runthreads;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

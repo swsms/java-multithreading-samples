@@ -22,7 +22,7 @@
 
     <modules>
         <module>main-thread</module>
-        <module>running-threads</module>
+        <module>run-threads</module>
     </modules>
 
     <dependencyManagement>
