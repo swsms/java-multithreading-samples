@@ -24,6 +24,7 @@
         <module>main-thread</module>
         <module>run-threads</module>
         <module>thread-safe-queue</module>
+        <module>race-condition</module>
     </modules>
 
     <dependencyManagement>
