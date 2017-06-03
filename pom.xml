@@ -25,6 +25,7 @@
         <module>run-threads</module>
         <module>thread-safe-queue</module>
         <module>race-condition</module>
+        <module>futures</module>
     </modules>
 
     <dependencyManagement>
